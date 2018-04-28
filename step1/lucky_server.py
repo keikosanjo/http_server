@@ -19,7 +19,7 @@ while True:
     (client_sock, client_addr) = sock.accept()
     # ソケットからデータを受信し、結果を bytes オブジェクトで返す.値はmax値
     client_sock.recv(1024)
-    # 最後の空白を除く
+    # ファイル読み込み
     f = open('index.html','r')
     msg = f.read()
     method = Method(msg)
