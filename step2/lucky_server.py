@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 import socket
 from lucky_server_method import Method
-import urllib
 
 # サーバー側
 host = socket.gethostbyname('IP address')
@@ -24,8 +23,7 @@ while True:
     status_line_list = receive_list[0].split(" ")
     url = status_line_list[1].strip('/')
     
-    opener = urllib.FancyURLopener({})
-    f = opener.open(url)
+    f = open(url, 'r')
     msg = f.read()
 
     method = Method(msg)
