@@ -4,7 +4,7 @@ import socket
 from lucky_server_method import Method
 
 # サーバー側
-host = socket.gethostbyname('192.168.101.8')
+host = socket.gethostbyname('IP address')
 port = 8080
 
 # ソケット作成
