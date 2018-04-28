@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import socket
 from lucky_server_method import Method
+import urllib
 
 # サーバー側
 host = socket.gethostbyname('192.168.101.8')
@@ -18,20 +19,19 @@ while True:
     # 接続受付
     (client_sock, client_addr) = sock.accept()
     # ソケットからデータを受信し、結果を bytes オブジェクトで返す.値はmax値
-    response = sock.connect(("www.yahoo.co.jp",80))
     receive = client_sock.recv(1024)
-
-    #print(receive)
-    #client_sock.recv(1024)
-    # 最後の空白を除く
-    #msg = msg.rstrip()
-    #f = open('https://www.yahoo.co.jp','r')
+    receive_list = receive.splitlines()
+    status_line_list = receive_list[0].split(" ")
+    url = status_line_list[1].strip('/')
+    
+    opener = urllib.FancyURLopener({})
+    f = opener.open(url)
     msg = f.read()
+
     method = Method(msg)
-    #response = method.get()
+    response = method.get()
 
     print " %s " % response
-    #print "client : %s " % msg
     client_sock.send("%s \n\n" % response)
     f.close()
 
