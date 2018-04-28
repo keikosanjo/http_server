@@ -18,17 +18,14 @@ while True:
     # 接続受付
     (client_sock, client_addr) = sock.accept()
     # ソケットからデータを受信し、結果を bytes オブジェクトで返す.値はmax値
-    #msg = client_sock.recv(1024)
     client_sock.recv(1024)
     # 最後の空白を除く
-    #msg = msg.rstrip()
     f = open('index.html','r')
     msg = f.read()
     method = Method(msg)
     response = method.get()
 
     print " %s " % response
-    #print "client : %s " % msg
     client_sock.send("%s \n\n" % response)
     f.close()
 
