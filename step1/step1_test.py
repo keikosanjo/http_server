@@ -5,43 +5,33 @@ class TestMethod(unittest.TestCase):
     """test class of lucky_server_method.py
     """
 
-    def test_get(self):
+    def test_get_statusline(self):
         """ test method for get
         """
         print("test case1 : hello")
-        msg1 =  "hello"
-        expected1 = '''HTTP/1.0 200 OK
-Content-Type: text/html; charset=UTF-8
-Server: lucky_server
-Content-Length: 5
-
-hello'''
+        expected1 = "HTTP/1.0 200 OK"
+        msg1 = "hello"
         method1 = Method(msg1)
-        actual1 = method1.get()
+        response1 = method1.get().splitlines()
+        actual1 = response1[0]
         self.assertEqual(expected1, actual1)
 
+    def test_get_header(self):
         print("test case2: hogehoge")
+        expected2 = "Content-Type: text/html; charset=UTF-8"
         msg2 = "hogehoge"
-        expected2 = '''HTTP/1.0 200 OK
-Content-Type: text/html; charset=UTF-8
-Server: lucky_server
-Content-Length: 8
-
-hogehoge'''
         method2 = Method(msg2)
-        actual2 = method2.get()
+        response2 = method2.get().splitlines()
+        actual2 = response2[1]
         self.assertEqual(expected2, actual2)
 
+    def test_get_msg(self):
         print("test case3: hello world!")
+        expected3 = "hello world!"
         msg3 = "hello world!"
-        expected3 = '''HTTP/1.0 200 OK
-Content-Type: text/html; charset=UTF-8
-Server: lucky_server
-Content-Length: 12
-
-hello world!'''
         method3 = Method(msg3)
-        actual3 = method3.get()
+        response3 = method3.get().splitlines()
+        actual3 = response3[6]
         self.assertEqual(expected3, actual3)
 
 if __name__ == "__main__":
