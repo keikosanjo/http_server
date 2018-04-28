@@ -1,0 +1,13 @@
+div.heading {
+width: 600px;
+margin-bottom: 1em;
+padding: 4px 0;
+border-bottom: 1px #c0c0c0 solid;
+}
+div.heading h3 {
+margin: 0;
+padding: 3px 3px 0 5px;
+border-left: 5px #ff8000 solid;
+font-size: 100%;
+line-height: 100%;
+}
